@@ -1,0 +1,137 @@
+% \documentclass[12pt, twoside]{report}
+\documentclass[12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc} % to use typefaces %
+\usepackage[document]{ragged2e}
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage[a4paper, top=25mm, bottom=25mm, left=12mm, right=12mm,bindingoffset=6mm]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyfoot[R]{\thepage}
+\fancyfoot[L]{Department of Computer Engineering, SGSITS Indore}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\usepackage[section]{placeins}
+\usepackage{amsmath}
+\usepackage{titlesec}
+\usepackage{setspace}
+\usepackage{lipsum}
+\usepackage{mathptmx} % Times font %
+\usepackage[export]{adjustbox}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[
+    backend=biber,
+    style=ieee,
+    sorting=ynt,
+    urldate=long
+]{biblatex}
+\usepackage[none]{hyphenat}
+\usepackage{hyperref}       % to allow clickable links in toc
+% \usepackage[T1]{fontenc}
+% \usepackage{mathptmx}
+% \usepackage[style=ieee,backend=bibtex]{biblatex}
+\addbibresource{references.bib}
+% to fix empty brackets in references
+\usepackage{xpatch}
+\xpatchbibdriver{online}
+  {\printtext[parens]{\usebibmacro{date}}}
+  {\iffieldundef{year}
+    {}
+    {\printtext[parens]{\usebibmacro{date}}}}
+  {}
+  {\typeout{There was an error patching biblatex-ieee (specifically, ieee.bbx's @online driver)}}
+
+
+\title{
+    {Voice Based Assistant for Visually Impaired}\\
+    {\large Shri G.S. Institute of Technology and Science}\\
+    {\includegraphics{logo.png}}
+}
+\author{Author Names}
+\date{Day Month Year}
+
+\begin{document}
+\justifying         % Jutify the entire document %
+\sloppy             % Allow latex to insert spaces to justify %
+\pagenumbering{roman}
+\urlstyle{same}
+
+\input{titlepage.tex}
+
+
+\titleformat{\chapter}[display]
+  {\normalfont\LARGE\bfseries\centering}
+  {\MakeUppercase{\chaptertitlename}\ \thechapter:}
+  {.5em}
+  {\MakeUppercase}{\Large}
+
+
+
+\addcontentsline{toc}{chapter}{\numberline{}Recommendation}%
+\input{recommendation.tex}
+
+
+\addcontentsline{toc}{chapter}{\numberline{}Certificate}%
+\input{certificate.tex}
+% Restore default title spacing %
+
+\chapter*{Acknowledgement}
+\addcontentsline{toc}{chapter}{\numberline{}Acknowledgements}%
+\input{acknowledgement.tex}
+
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{\numberline{}Abstract}%
+\input{abstract.tex}
+
+
+\tableofcontents
+
+\listoffigures
+
+\listoftables
+
+\titleformat{\chapter}[display]
+  {\bfseries\huge\raggedleft}
+  {\Large\chaptertitlename\ \thechapter}
+  {3ex}
+  {\titlerule\vspace{1.5ex}\filright}
+  [\vspace{1ex}\titlerule\filright]
+
+\renewcommand{\baselinestretch}{1.15}
+\chapter{Introduction}
+\pagenumbering{arabic}
+\input{chapters/introduction}
+
+\chapter{Background}
+\input{chapters/background}
+
+\chapter{Literature Review}
+\input{chapters/literature_review}
+
+\chapter{Analysis}
+\input{chapters/analysis}
+ 
+\chapter{Design}
+\input{chapters/design}
+ 
+\chapter{Conclusion}
+\input{chapters/conclusion}
+
+% \chapter{Sample Chapter}
+% \input{chapters/sample}
+
+% \appendix
+% \chapter{Appendix Title}
+% \input{chapters/appendix}
+
+%-----------------------------------------------------%
+%-The following command will print bibliography cited in the document(using the cite command) and which are present in the file references.bib
+% A sample reference is added in the file references.bib
+%-----------------------------------------------------%
+\printbibliography
+\end{document}
