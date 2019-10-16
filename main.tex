@@ -25,8 +25,7 @@
 ]{biblatex}
 \usepackage[none]{hyphenat}
 \usepackage{hyperref}       % to allow clickable links in toc
-\renewcommand{\thesection}{\arabic{section}.}
-\renewcommand{\thesubsection}{\hspace{1cm}\arabic{section}.\arabic{subsection}.}
+
 \usepackage{etoolbox}
 \apptocmd{\thebibliography}{\csname phantomsection\endcsname\addcontentsline{toc}{chapter}{\bibname}}{}{}
 
@@ -101,9 +100,15 @@
   {3ex}
   {\titlerule\vspace{1.5ex}\filright}
   [\vspace{1ex}\titlerule\filright]
+ 
+% \titleformat*{\section}{\Large\bfseries}
+% \titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+% \titleformat*{\subsection}{\large\bfseries}
+\titlespacing*{\subsection}{30pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 
 \renewcommand{\baselinestretch}{1.15}
-\pagenumbering{arabic}
+\titleformat*{\section}{\LARGE\bfseries}
+\titleformat*{\subsection}{\Large\bfseries}
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\nouppercase{\leftmark}}
@@ -114,6 +119,7 @@
 
 
 \chapter{Introduction}
+\pagenumbering{arabic}
 \input{chapters/introduction}
 
 \chapter{Background}
@@ -148,7 +154,7 @@
 \appendix
 \chapter{Appendix}
 \input{chapters/appendix}
-
+\renewcommand\bibname{References}
 \clearpage
 \addcontentsline{toc}{chapter}{References}
 \phantomsection
