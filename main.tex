@@ -1,20 +1,13 @@
 % \documentclass[12pt, twoside]{report}
 \documentclass[12pt]{report}
+\usepackage[a4paper, top=25mm, bottom=25mm, left=12mm, right=12mm,bindingoffset=6mm]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage[T1]{fontenc} % to use typefaces %
 \usepackage[document]{ragged2e}
 \usepackage{graphicx}
 \graphicspath{{images/}}
-\usepackage[a4paper, top=25mm, bottom=25mm, left=12mm, right=12mm,bindingoffset=6mm]{geometry}
 \usepackage{fancyhdr}
-\pagestyle{fancy}
-\fancyhf{}
-\fancyhead[L]{\nouppercase{\leftmark}}
-\fancyfoot[R]{\thepage}
-\fancyfoot[L]{Department of Computer Engineering, SGSITS Indore}
-\renewcommand{\headrulewidth}{0.4pt}
-\renewcommand{\footrulewidth}{0.4pt}
 \usepackage[section]{placeins}
 \usepackage{amsmath}
 \usepackage{titlesec}
@@ -32,6 +25,13 @@
 ]{biblatex}
 \usepackage[none]{hyphenat}
 \usepackage{hyperref}       % to allow clickable links in toc
+\renewcommand{\thesection}{\arabic{section}.}
+\renewcommand{\thesubsection}{\hspace{1cm}\arabic{section}.\arabic{subsection}.}
+\usepackage{etoolbox}
+\apptocmd{\thebibliography}{\csname phantomsection\endcsname\addcontentsline{toc}{chapter}{\bibname}}{}{}
+
+
+
 % \usepackage[T1]{fontenc}
 % \usepackage{mathptmx}
 % \usepackage[style=ieee,backend=bibtex]{biblatex}
@@ -103,8 +103,17 @@
   [\vspace{1ex}\titlerule\filright]
 
 \renewcommand{\baselinestretch}{1.15}
-\chapter{Introduction}
 \pagenumbering{arabic}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyfoot[R]{\thepage}
+\fancyfoot[L]{Department of Computer Engineering, SGSITS Indore}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+\chapter{Introduction}
 \input{chapters/introduction}
 
 \chapter{Background}
@@ -133,5 +142,17 @@
 %-The following command will print bibliography cited in the document(using the cite command) and which are present in the file references.bib
 % A sample reference is added in the file references.bib
 %-----------------------------------------------------%
+
+% \addcontentsline{toc}{chapter}{\numberline{}Abstract}%
+
+\appendix
+\chapter{Appendix}
+\input{chapters/appendix}
+
+\clearpage
+\addcontentsline{toc}{chapter}{References}
+\phantomsection
 \printbibliography
+
+
 \end{document}
