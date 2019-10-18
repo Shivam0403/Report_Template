@@ -67,7 +67,7 @@
 ]{biblatex}
 \usepackage[none]{hyphenat}
 \usepackage{hyperref}       % to allow clickable links in toc
-
+\usepackage[toc]{appendix}
 \usepackage{etoolbox}
 \apptocmd{\thebibliography}{\csname phantomsection\endcsname\addcontentsline{toc}{chapter}{\bibname}}{}{}
 
@@ -175,6 +175,12 @@
  
 \chapter{Design}
 \input{chapters/design}
+
+\chapter{Implementation}
+\input{chapters/implementation.tex}
+
+\chapter{Testing \& Results}
+\input{chapters/testing.tex}
  
 \chapter{Conclusion}
 \input{chapters/conclusion}
@@ -192,10 +198,6 @@
 %-----------------------------------------------------%
 
 % \addcontentsline{toc}{chapter}{\numberline{}Abstract}%
-
-\appendix
-\chapter{Appendix}
-\input{chapters/appendix}
 \renewcommand\bibname{References}
 \clearpage
 \addcontentsline{toc}{chapter}{References}
@@ -203,4 +205,35 @@
 \printbibliography
 
 
+
+
+\begin{appendices}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
+\makeatletter
+\addtocontents{toc}{%
+  \begingroup
+  \let\protect\l@chapter\protect\l@section
+  \let\protect\l@section\protect\l@subsection
+}
+\makeatother
+  \chapter{Project Related Concepts}
+  \input{appendix/project_concepts.tex}
+  
+  \chapter{User Mannual}
+  \input{appendix/user_mannual.tex}
+  
+  \chapter{Screenshots}
+  \input{appendix/screenshots.tex}
+  
+  \chapter{Glossary}
+  \input{appendix/glossary.tex}
+  
+  \chapter{Code}
+  \input{appendix/code.tex}=
+\addtocontents{toc}{\endgroup}
+\end{appendices}
+\input{chapters/appendix}
+
 \end{document}
+
+
